@@ -1,0 +1,114 @@
+#definir antes de hacer
+import numpy as np
+lista=[i for i in range(1,41)]
+arreglo=np.array(lista)
+edificio=arreglo.reshape(10,4)
+rut=[]
+lista_ganancia=[]
+def validar_run(a):
+  while len(a)>8:
+    run=input("Ingrese un run valido: ")
+    if len(run)<=8:
+      break
+  print()
+  return True
+#comprar un depto
+def comprar():
+  ganancia=0
+  print("Los tipos y precios de los depto. son los siguientes")
+  print("1-tipo A: 3800 UF.")
+  print("2-tipo B: 3000 UF.")
+  print("3-tipo C: 2800 UF.")
+  print("4-tipo D, 3500 UF")
+  print()
+  tipo=str(input("ingrese el tipo de depto. que desea comprar: "))
+  print("-----------Edificio-----------")
+  print(edificio)
+  print()
+  while tipo=="A" or tipo == "B" or tipo == "C" or tipo == "D":
+    
+    numero=int(input("Ingrese numero de Depto. que desea comprar: "))
+    if numero==1 or numero==5 or numero==9 or numero==13 or numero==17 or numero==21 or numero==25 or numero==29 or numero==33 or numero==37:
+        ganancia+=3800
+    elif numero==2 or numero==6 or numero==10 or numero==14 or numero==18 or numero==22 or numero==26 or numero==30 or numero==34 or numero==38:
+        ganancia+=3000
+    elif numero==3 or numero==7 or numero==11 or numero==15 or numero==19 or numero==23 or numero==27 or numero==31 or numero==35 or numero==39:
+        ganancia+=2800
+    elif numero==4 or numero==8 or numero==12 or numero==16 or numero==20 or numero==24 or numero==28 or numero==32 or numero==36 or numero==40:
+        ganancia+=3500
+    print("El costo de su seleccion es de:UF",ganancia)
+    lista_ganancia.append(ganancia)
+    print()
+    lista.remove(numero)
+    lista.insert(numero-1,"x")
+    arr=np.array(lista)
+    edf=arr.reshape(10,4)
+    print("edificio con Deptos. comprados")
+    print(edf)
+    print()
+    break
+  run=input("Ingrese Run sin puntos ni digito verificador: ")
+  print()
+  if validar_run(run):
+    rut.append(run)
+    print("Se a ingresado los datos correctamente")
+    print()
+  return ganancia
+#mostrar los deptos actuales
+def buscar():
+ print("estado actual de la venta de Deptos.")
+ print()
+ arr=np.array(lista)
+ edf=arr.reshape(10,4)
+ print("edificio con Deptos. comprados")
+ print(edf)
+#listado de compradores
+def listado():
+    rut.sort()
+    for run in rut:
+      print(run)
+    print()
+#definir funcion para mostrar las ganancias
+def total_ganancia():
+  ganancia_total=np.array(lista_ganancia)
+  print()
+  print("La ganancia total por las ventas de deptos es de:UF",ganancia_total[:].sum())
+  print()
+  return
+#defnir funcion para salir del menu
+def salir():
+  print("Usted a salido del programa")
+  print("Software Creado Por Rodrigo Ayala")
+  print("con fecha en 12/07/2023")
+  print("Hasta pronto")
+  return
+
+#definir menu
+def menu():
+  while True:
+    print("Bienvenido al sistema de compra de inmobiliaria Casa Feliz")
+    print("las opciones a elegir son las siguientes")
+    print("1.- Comprar Depto.")
+    print("2.- Mostrar Deptos. disponibles")
+    print("3.- Ver listado de compradores")
+    print("4.- Mostrar ventas totales")
+    print("5.- salir del menu")
+    print()
+    op=int(input("Ingrese una opcion: "))
+    print()
+    if op==1:
+      comprar()
+    elif op==2:
+      buscar()
+    elif op==3:
+      listado()
+    elif op==4:
+      total_ganancia()
+    elif op==5:
+      salir()
+      break
+    else:
+      print("Opcion invalida intente nuevamente")
+
+#se inicia el menu
+menu()
